@@ -1,0 +1,6 @@
+{"code":"PGRST106","details":null,"hint":"Only the following schemas are exposed: public, graphql_public","level":"error","message":"Error inserting data: Invalid schema: pdf","timestamp":"14/1/2026, 08:54:29"}
+{"code":"PGRST204","details":null,"hint":null,"level":"error","message":"Error inserting data: Could not find the 'job_description' column of 'pdf_upload_details' in the schema cache","timestamp":"14/1/2026, 08:59:04"}
+{"code":"42501","details":null,"hint":null,"level":"error","message":"Error inserting data: permission denied for schema pdf","timestamp":"14/1/2026, 09:03:09"}
+{"code":"42501","details":null,"hint":null,"level":"error","message":"Error inserting data: permission denied for schema pdf","timestamp":"14/1/2026, 09:05:49"}
+{"code":"42501","details":null,"hint":null,"level":"error","message":"Error inserting data: permission denied for schema pdf","timestamp":"7/3/2026, 18:18:39"}
+{"code":"42501","details":null,"hint":null,"level":"error","message":"Error inserting data: new row violates row-level security policy for table \"pdf_upload_details\"","timestamp":"7/3/2026, 18:30:00"}
