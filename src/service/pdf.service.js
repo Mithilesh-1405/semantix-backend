@@ -1,11 +1,15 @@
 // ===========================SERVICES=================================
 const PDFDetailsService = require('./pdfDetails.service')
 const PolishHistoryService = require('./polishHistory.service');
+const SearchHistoryService = require('./searchHistory.service');
+const RAGService = require('./RAGPipeline.service')
 const AppError = require('../utils/appError');
 
 // ==============================Service Instances=====================
 const pdfDetailsService = new PDFDetailsService();
 const polishHistoryService = new PolishHistoryService();
+const searchHistoryService = new SearchHistoryService();
+const ragService = new RAGService();
 
 // ===========================EXTERNAL PACKAGES=========================
 const { GoogleGenAI } = require("@google/genai");
@@ -78,6 +82,41 @@ class PdfService {
                 similarityScore: similarity,
                 message: 'Your resume similarity score with job description is ' + similarity
             };
+
+        } catch (err) {
+            console.error(err);
+            throw new Error(err.message || 'Server error');
+        }
+    }
+    async searchPDFRAG(pdfFile, search_query, type) {
+        try {
+            if (!pdfFile) {
+                throw new AppError('No file uploaded', 400);
+            }
+            if (!search_query || !search_query.trim()) {
+                throw new AppError('Search query is required', 400);
+            }
+
+            const insertPDFData = await pdfDetailsService.insertPDFDetails(pdfFile, type);
+            if (!insertPDFData[0].id) {
+                throw new AppError('Error inserting PDF details', 500);
+            }
+
+            // Attach the DB ID to the file object for the RAG service usage
+            const pdf_id = insertPDFData[0].id;
+
+            // will return pages with relevant searches
+            const semanticSearch = await ragService.semanticSearch(pdfFile, search_query, pdf_id)
+            if(!semanticSearch){
+                throw new AppError('Error searching PDF', 500);
+            }
+
+            const insertHistoryData = await searchHistoryService.insertSearchHistory(insertPDFData[0].id, insertPDFData[0].pdf_name, search_query);
+            if (!insertHistoryData[0].id) {
+                throw new AppError('Error inserting history details', 500);
+            }
+
+            return semanticSearch;
 
         } catch (err) {
             console.error(err);
