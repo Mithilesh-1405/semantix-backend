@@ -537,3 +537,136 @@
 {"level":"info","message":"Using existing PDF record:","timestamp":"31/3/2026, 17:13:42"}
 {"level":"info","message":"Server running on port 9000","timestamp":"31/3/2026, 17:16:16"}
 {"level":"info","message":"Server running on port 9000","timestamp":"31/3/2026, 17:17:51"}
+{"fileSize":105782,"level":"info","message":"Processing pdf search request:","originalFilename":"Mithilesh_resume_1.pdf","searchQueryLength":142,"timestamp":"31/3/2026, 17:37:16"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"31/3/2026, 17:37:16"}
+{"fileSize":105782,"level":"info","message":"Processing pdf search request:","originalFilename":"Mithilesh_resume_1.pdf","searchQueryLength":184,"timestamp":"31/3/2026, 17:38:30"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"31/3/2026, 17:38:30"}
+{"fileSize":105782,"level":"info","message":"Processing pdf search request:","originalFilename":"Mithilesh_resume_1.pdf","searchQueryLength":184,"timestamp":"31/3/2026, 17:45:44"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"31/3/2026, 17:45:45"}
+{"level":"info","message":"Server running on port 9000","timestamp":"1/4/2026, 24:25:28"}
+{"level":"info","message":"Server running on port 9000","timestamp":"1/4/2026, 24:25:56"}
+{"level":"info","message":"Server running on port 9000","timestamp":"1/4/2026, 24:26:08"}
+{"level":"info","message":"Server running on port 9000","timestamp":"1/4/2026, 24:26:10"}
+{"level":"info","message":"Server running on port 9000","timestamp":"1/4/2026, 24:26:12"}
+{"level":"info","message":"Server running on port 9000","timestamp":"1/4/2026, 24:26:17"}
+{"level":"info","message":"Server running on port 9000","timestamp":"1/4/2026, 24:26:19"}
+{"level":"info","message":"Server running on port 9000","timestamp":"1/4/2026, 24:26:51"}
+{"level":"info","message":"Server running on port 9000","timestamp":"1/4/2026, 24:26:55"}
+{"level":"info","message":"Welcome to the API!","timestamp":"1/4/2026, 24:38:50"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 12:10:09"}
+{"level":"info","message":"Welcome to the API!","timestamp":"17/5/2026, 12:10:23"}
+{"level":"info","message":"Welcome to the API!","timestamp":"17/5/2026, 12:10:42"}
+{"fileSize":105835,"level":"info","message":"Processing pdf search request:","originalFilename":"Mithilesh_resume.pdf","searchQueryLength":6,"timestamp":"17/5/2026, 12:19:37"}
+{"0":{"created_at":"2026-05-17T06:49:38.125+00:00","id":35,"pdf_description":null,"pdf_name":"Mithilesh_resume.pdf","pdf_size":"105835","pdf_type":"other"},"level":"info","message":"Inserted new data:","timestamp":"17/5/2026, 12:19:38"}
+{"level":"error","message":"Error in semanticSearch: {\"error\":{\"code\":429,\"message\":\"Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.\",\"status\":\"RESOURCE_EXHAUSTED\"}}","name":"ApiError","stack":"ApiError: {\"error\":{\"code\":429,\"message\":\"Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.\",\"status\":\"RESOURCE_EXHAUSTED\"}}\n    at throwErrorIfNotOK (C:\\exter\\PersProj\\semantix\\backend\\node_modules\\@google\\genai\\dist\\node\\index.cjs:12044:30)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async C:\\exter\\PersProj\\semantix\\backend\\node_modules\\@google\\genai\\dist\\node\\index.cjs:11764:13\n    at async GoogleGenAIEmbeddings.embedDocuments (C:\\exter\\PersProj\\semantix\\backend\\src\\service\\RAGPipeline.service.js:34:26)\n    at async SupabaseVectorStore.addDocuments (C:\\exter\\PersProj\\semantix\\backend\\node_modules\\@langchain\\community\\dist\\vectorstores\\supabase.cjs:166:26)\n    at async RAGPipelineService.semanticSearch (C:\\exter\\PersProj\\semantix\\backend\\src\\service\\RAGPipeline.service.js:129:17)\n    at async PdfService.searchPDFRAG (C:\\exter\\PersProj\\semantix\\backend\\src\\service\\pdf.service.js:109:36)\n    at async exports.searchPDF (C:\\exter\\PersProj\\semantix\\backend\\src\\controllers\\pdfSearch.controller.js:22:24)","status":429,"timestamp":"17/5/2026, 12:19:40"}
+{"fileSize":105782,"level":"info","message":"Processing pdf search request:","originalFilename":"Mithilesh_resume_1.pdf","searchQueryLength":6,"timestamp":"17/5/2026, 12:25:16"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 12:25:16"}
+{"fileSize":105782,"level":"info","message":"Processing pdf search request:","originalFilename":"Mithilesh_resume_1.pdf","searchQueryLength":9,"timestamp":"17/5/2026, 12:28:27"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 12:28:27"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 12:31:43"}
+{"fileSize":105782,"level":"info","message":"Processing pdf search request:","originalFilename":"Mithilesh_resume_1.pdf","searchQueryLength":9,"timestamp":"17/5/2026, 12:32:34"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 12:32:35"}
+{"level":"error","message":"Error in semanticSearch: {\"error\":{\"code\":429,\"message\":\"Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.\",\"status\":\"RESOURCE_EXHAUSTED\"}}","name":"ApiError","stack":"ApiError: {\"error\":{\"code\":429,\"message\":\"Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.\",\"status\":\"RESOURCE_EXHAUSTED\"}}\n    at throwErrorIfNotOK (C:\\exter\\PersProj\\semantix\\backend\\node_modules\\@google\\genai\\dist\\node\\index.cjs:12044:30)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async C:\\exter\\PersProj\\semantix\\backend\\node_modules\\@google\\genai\\dist\\node\\index.cjs:11764:13\n    at async GoogleGenAIEmbeddings.embedQuery (C:\\exter\\PersProj\\semantix\\backend\\src\\service\\RAGPipeline.service.js:51:26)\n    at async SupabaseVectorStore.similaritySearchWithScore (C:\\exter\\PersProj\\semantix\\backend\\node_modules\\@langchain\\core\\dist\\vectorstores.cjs:244:47)\n    at async RAGPipelineService.semanticSearch (C:\\exter\\PersProj\\semantix\\backend\\src\\service\\RAGPipeline.service.js:134:29)\n    at async PdfService.searchPDFRAG (C:\\exter\\PersProj\\semantix\\backend\\src\\service\\pdf.service.js:109:36)\n    at async exports.searchPDF (C:\\exter\\PersProj\\semantix\\backend\\src\\controllers\\pdfSearch.controller.js:22:24)","status":429,"timestamp":"17/5/2026, 12:32:37"}
+{"fileSize":105782,"level":"info","message":"Processing pdf search request:","originalFilename":"Mithilesh_resume_1.pdf","searchQueryLength":3,"timestamp":"17/5/2026, 12:32:47"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 12:32:47"}
+{"fileSize":105782,"level":"info","message":"Processing pdf search request:","originalFilename":"Mithilesh_resume_1.pdf","searchQueryLength":5,"timestamp":"17/5/2026, 12:33:59"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 12:33:59"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 12:34:13"}
+{"fileSize":105782,"level":"info","message":"Processing pdf search request:","originalFilename":"Mithilesh_resume_1.pdf","searchQueryLength":5,"timestamp":"17/5/2026, 12:34:29"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 12:34:30"}
+{"fileSize":105782,"level":"info","message":"Processing pdf search request:","originalFilename":"Mithilesh_resume_1.pdf","searchQueryLength":142,"timestamp":"17/5/2026, 12:36:16"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 12:36:16"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 12:40:27"}
+{"fileSize":105782,"level":"info","message":"Processing pdf search request:","originalFilename":"Mithilesh_resume_1.pdf","searchQueryLength":80,"timestamp":"17/5/2026, 12:42:23"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 12:42:24"}
+{"fileSize":105782,"level":"info","message":"Processing pdf search request:","originalFilename":"Mithilesh_resume_1.pdf","searchQueryLength":5,"timestamp":"17/5/2026, 12:44:10"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 12:44:10"}
+{"fileSize":283122,"level":"info","message":"Processing pdf search request:","originalFilename":"ZTC client Windows. (1).pdf","searchQueryLength":6,"timestamp":"17/5/2026, 12:45:46"}
+{"0":{"created_at":"2026-05-17T07:15:46.728+00:00","id":36,"pdf_description":null,"pdf_name":"ZTC client Windows. (1).pdf","pdf_size":"283122","pdf_type":"other"},"level":"info","message":"Inserted new data:","timestamp":"17/5/2026, 12:45:47"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 12:48:40"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 12:49:16"}
+{"fileSize":283122,"level":"info","message":"Processing pdf search request:","originalFilename":"ZTC client Windows. (1).pdf","searchQueryLength":6,"timestamp":"17/5/2026, 12:51:57"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 12:51:58"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 12:52:47"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 12:52:53"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 12:52:57"}
+{"fileSize":283122,"level":"info","message":"Processing pdf search request:","originalFilename":"ZTC client Windows. (1).pdf","searchQueryLength":6,"timestamp":"17/5/2026, 12:53:16"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 12:53:16"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 12:54:38"}
+{"fileSize":283122,"level":"info","message":"Processing pdf search request:","originalFilename":"ZTC client Windows. (1).pdf","searchQueryLength":6,"timestamp":"17/5/2026, 12:54:55"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 12:54:55"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 12:56:29"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 12:56:49"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 12:57:30"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 12:57:47"}
+{"level":"info","message":"Welcome to the API!","timestamp":"17/5/2026, 12:59:16"}
+{"fileSize":283122,"level":"info","message":"Processing pdf search request:","originalFilename":"ZTC client Windows. (1).pdf","searchQueryLength":6,"timestamp":"17/5/2026, 12:59:26"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 12:59:26"}
+{"level":"error","message":"Error in semanticSearch: {\"error\":{\"code\":400,\"message\":\"Invalid value at 'requests[0].task_type' (type.googleapis.com/google.ai.generativelanguage.v1beta.TaskType), \\\"outputDimensionality\\\"\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.BadRequest\",\"fieldViolations\":[{\"field\":\"requests[0].task_type\",\"description\":\"Invalid value at 'requests[0].task_type' (type.googleapis.com/google.ai.generativelanguage.v1beta.TaskType), \\\"outputDimensionality\\\"\"}]}]}}","name":"ApiError","stack":"ApiError: {\"error\":{\"code\":400,\"message\":\"Invalid value at 'requests[0].task_type' (type.googleapis.com/google.ai.generativelanguage.v1beta.TaskType), \\\"outputDimensionality\\\"\",\"status\":\"INVALID_ARGUMENT\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.BadRequest\",\"fieldViolations\":[{\"field\":\"requests[0].task_type\",\"description\":\"Invalid value at 'requests[0].task_type' (type.googleapis.com/google.ai.generativelanguage.v1beta.TaskType), \\\"outputDimensionality\\\"\"}]}]}}\n    at throwErrorIfNotOK (C:\\exter\\PersProj\\semantix\\backend\\node_modules\\@google\\genai\\dist\\node\\index.cjs:12044:30)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async C:\\exter\\PersProj\\semantix\\backend\\node_modules\\@google\\genai\\dist\\node\\index.cjs:11764:13\n    at async GoogleGenAIEmbeddings.embedQuery (C:\\exter\\PersProj\\semantix\\backend\\src\\service\\RAGPipeline.service.js:42:26)\n    at async SupabaseVectorStore.similaritySearchWithScore (C:\\exter\\PersProj\\semantix\\backend\\node_modules\\@langchain\\core\\dist\\vectorstores.cjs:244:47)\n    at async RAGPipelineService.semanticSearch (C:\\exter\\PersProj\\semantix\\backend\\src\\service\\RAGPipeline.service.js:128:29)\n    at async PdfService.searchPDFRAG (C:\\exter\\PersProj\\semantix\\backend\\src\\service\\pdf.service.js:109:36)\n    at async exports.searchPDF (C:\\exter\\PersProj\\semantix\\backend\\src\\controllers\\pdfSearch.controller.js:22:24)","status":400,"timestamp":"17/5/2026, 12:59:28"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:00:37"}
+{"fileSize":283122,"level":"info","message":"Processing pdf search request:","originalFilename":"ZTC client Windows. (1).pdf","searchQueryLength":6,"timestamp":"17/5/2026, 13:01:06"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 13:01:06"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:02:16"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:02:24"}
+{"fileSize":283122,"level":"info","message":"Processing pdf search request:","originalFilename":"ZTC client Windows. (1).pdf","searchQueryLength":13,"timestamp":"17/5/2026, 13:04:19"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 13:04:19"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:04:57"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:09:43"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:12:54"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:14:20"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:14:27"}
+{"level":"info","message":"Welcome to the API!","timestamp":"17/5/2026, 13:14:49"}
+{"fileSize":283122,"level":"info","message":"Processing pdf search request:","originalFilename":"ZTC client Windows. (1).pdf","searchQueryLength":6,"timestamp":"17/5/2026, 13:15:00"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 13:15:00"}
+{"level":"error","message":"Error in semanticSearch: Error searching for documents: 22000 different vector dimensions 1536 and 1024 null","stack":"Error: Error searching for documents: 22000 different vector dimensions 1536 and 1024 null\n    at SupabaseVectorStore._searchSupabase (C:\\exter\\PersProj\\semantix\\backend\\node_modules\\@langchain\\community\\dist\\vectorstores\\supabase.cjs:218:20)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async SupabaseVectorStore.similaritySearchVectorWithScore (C:\\exter\\PersProj\\semantix\\backend\\node_modules\\@langchain\\community\\dist\\vectorstores\\supabase.cjs:229:11)\n    at async RAGPipelineService.semanticSearch (C:\\exter\\PersProj\\semantix\\backend\\src\\service\\RAGPipeline.service.js:84:29)\n    at async PdfService.searchPDFRAG (C:\\exter\\PersProj\\semantix\\backend\\src\\service\\pdf.service.js:109:36)\n    at async exports.searchPDF (C:\\exter\\PersProj\\semantix\\backend\\src\\controllers\\pdfSearch.controller.js:22:24)","timestamp":"17/5/2026, 13:15:02"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:17:42"}
+{"level":"info","message":"Welcome to the API!","timestamp":"17/5/2026, 13:18:09"}
+{"fileSize":283122,"level":"info","message":"Processing pdf search request:","originalFilename":"ZTC client Windows. (1).pdf","searchQueryLength":6,"timestamp":"17/5/2026, 13:18:16"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 13:18:17"}
+{"level":"error","message":"Error in semanticSearch: Error searching for documents: 22000 different vector dimensions 1536 and 384 null","stack":"Error: Error searching for documents: 22000 different vector dimensions 1536 and 384 null\n    at SupabaseVectorStore._searchSupabase (C:\\exter\\PersProj\\semantix\\backend\\node_modules\\@langchain\\community\\dist\\vectorstores\\supabase.cjs:218:20)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async SupabaseVectorStore.similaritySearchVectorWithScore (C:\\exter\\PersProj\\semantix\\backend\\node_modules\\@langchain\\community\\dist\\vectorstores\\supabase.cjs:229:11)\n    at async RAGPipelineService.semanticSearch (C:\\exter\\PersProj\\semantix\\backend\\src\\service\\RAGPipeline.service.js:84:29)\n    at async PdfService.searchPDFRAG (C:\\exter\\PersProj\\semantix\\backend\\src\\service\\pdf.service.js:109:36)\n    at async exports.searchPDF (C:\\exter\\PersProj\\semantix\\backend\\src\\controllers\\pdfSearch.controller.js:22:24)","timestamp":"17/5/2026, 13:18:19"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:19:50"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:25:15"}
+{"level":"info","message":"Welcome to the API!","timestamp":"17/5/2026, 13:25:27"}
+{"fileSize":283122,"level":"info","message":"Processing pdf search request:","originalFilename":"ZTC client Windows. (1).pdf","searchQueryLength":6,"timestamp":"17/5/2026, 13:25:39"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 13:25:39"}
+{"level":"info","message":"Welcome to the API!","timestamp":"17/5/2026, 13:26:14"}
+{"fileSize":283122,"level":"info","message":"Processing pdf search request:","originalFilename":"ZTC client Windows. (1).pdf","searchQueryLength":49,"timestamp":"17/5/2026, 13:26:19"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 13:26:20"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:27:11"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:27:26"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:27:56"}
+{"level":"info","message":"Welcome to the API!","timestamp":"17/5/2026, 13:28:13"}
+{"fileSize":283122,"level":"info","message":"Processing pdf search request:","originalFilename":"ZTC client Windows. (1).pdf","searchQueryLength":19,"timestamp":"17/5/2026, 13:28:30"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 13:28:30"}
+{"level":"error","message":"Error in semanticSearch: Cannot read properties of undefined (reading 'metadata')","stack":"TypeError: Cannot read properties of undefined (reading 'metadata')\n    at C:\\exter\\PersProj\\semantix\\backend\\src\\service\\RAGPipeline.service.js:116:36\n    at Array.map (<anonymous>)\n    at RAGPipelineService.semanticSearch (C:\\exter\\PersProj\\semantix\\backend\\src\\service\\RAGPipeline.service.js:114:38)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async PdfService.searchPDFRAG (C:\\exter\\PersProj\\semantix\\backend\\src\\service\\pdf.service.js:109:36)\n    at async exports.searchPDF (C:\\exter\\PersProj\\semantix\\backend\\src\\controllers\\pdfSearch.controller.js:22:24)","timestamp":"17/5/2026, 13:28:32"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:29:24"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:29:48"}
+{"level":"info","message":"Welcome to the API!","timestamp":"17/5/2026, 13:30:06"}
+{"fileSize":283122,"level":"info","message":"Processing pdf search request:","originalFilename":"ZTC client Windows. (1).pdf","searchQueryLength":19,"timestamp":"17/5/2026, 13:30:17"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 13:30:17"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:32:53"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:33:03"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:33:05"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:33:08"}
+{"level":"info","message":"Welcome to the API!","timestamp":"17/5/2026, 13:33:19"}
+{"fileSize":105782,"level":"info","message":"Processing pdf search request:","originalFilename":"Mithilesh_resume_1.pdf","searchQueryLength":7,"timestamp":"17/5/2026, 13:34:03"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 13:34:03"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:36:10"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:36:23"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:36:38"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:37:03"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:37:45"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:38:21"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:38:49"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:38:54"}
+{"level":"info","message":"Welcome to the API!","timestamp":"17/5/2026, 13:39:00"}
+{"fileSize":105782,"level":"info","message":"Processing pdf search request:","originalFilename":"Mithilesh_resume_1.pdf","searchQueryLength":7,"timestamp":"17/5/2026, 13:39:11"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 13:39:11"}
+{"level":"info","message":"Welcome to the API!","timestamp":"17/5/2026, 13:39:48"}
+{"fileSize":105782,"level":"info","message":"Processing pdf search request:","originalFilename":"Mithilesh_resume_1.pdf","searchQueryLength":60,"timestamp":"17/5/2026, 13:39:54"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 13:39:55"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:41:23"}
+{"level":"info","message":"Server running on port 9000","timestamp":"17/5/2026, 13:41:31"}
+{"level":"info","message":"Welcome to the API!","timestamp":"17/5/2026, 13:41:53"}
+{"fileSize":105782,"level":"info","message":"Processing pdf search request:","originalFilename":"Mithilesh_resume_1.pdf","searchQueryLength":60,"timestamp":"17/5/2026, 13:42:01"}
+{"level":"info","message":"Using existing PDF record:","timestamp":"17/5/2026, 13:42:02"}
