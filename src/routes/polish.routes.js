@@ -13,9 +13,9 @@ const pdfSearch_controller = require('../controllers/pdfSearch.controller');
 // middleware
 const { authenticate } = require('../middleware/auth.middleware');
 
-router.post('/polish-resume', authenticate, upload.single('pdf_file'), pdf_controller.polishResume);
+router.post('/analyse-resume', authenticate, upload.single('pdf_file'), pdf_controller.polishResume);
 router.post('/search-pdf', authenticate, upload.single('pdf_file'), pdfSearch_controller.searchPDF);
-router.get('/pdf-polish-history', authenticate, pdf_controller.getPolishHistory)
+router.get('/pdf-analyse-history', authenticate, pdf_controller.getPolishHistory)
 router.get('/pdf-search-history', authenticate, pdfSearch_controller.getSearchHistory)
 
 module.exports = router;
