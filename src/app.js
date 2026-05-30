@@ -10,7 +10,7 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 const app = express();
 
 app.use(cors({
-    origin: process.env.CORS_ORIGIN || 'http://localhost:8080',
+    origin: process.env.CORS_ORIGIN || 'https://semantix-hub-kohl.vercel.app',
     credentials: true
 }));
 
@@ -23,6 +23,10 @@ if (process.env.NODE_ENV === 'development') {
 } else {
     app.use(morgan('combined', { stream: { write: msg => logger.info(msg.trim()) } }));
 }
+
+app.get("/", (req, res) => {
+    res.json({ message: "Welcome to Semantix API. Please use /api/v1 to access the endpoints." });
+});
 
 app.use("/api/v1", routes);
 
