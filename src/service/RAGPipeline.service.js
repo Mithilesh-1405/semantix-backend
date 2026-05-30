@@ -8,11 +8,11 @@ const logger = require('../utils/logger.js');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const supabase = require('../config/supabase_client.js');
+const { supabaseAdmin } = require('../config/supabase_client.js');
 
 class RAGPipelineService {
 
-    async semanticSearch(pdfFile, query, pdf_id) {
+    async semanticSearch(pdfFile, query, pdf_id, userId) {
         try {
             // ====================== FREE EMBEDDING MODEL ======================
             const embeddings = new HuggingFaceInferenceEmbeddings({
@@ -30,13 +30,14 @@ class RAGPipelineService {
 
             const tableName = 'document_chunks';
 
+            // Use admin client so vector store operations bypass RLS
             const vectorStore = new SupabaseVectorStore(embeddings, {
-                client: supabase,
+                client: supabaseAdmin,
                 tableName,
                 queryName: 'match_documents',
             });
 
-            // Convert PDF to LangChain Documents
+            // Convert PDF to LangChain Documents — include userId in metadata
             const documents = data.pages
                 .map(page => ({
                     text: page.content.map(item => item.str).join(" ").trim(),
@@ -48,7 +49,8 @@ class RAGPipelineService {
                     metadata: {
                         page: p.pageNum,
                         source: pdfFile.originalname,
-                        pdfId: pdf_id
+                        pdfId: pdf_id,
+                        userId: userId        // ← user-specific tag
                     }
                 }));
 
@@ -65,25 +67,27 @@ class RAGPipelineService {
 
             const chunks = await splitter.splitDocuments(documents);
 
-            // Prevent duplicate indexing
-            const { data: existing } = await supabase
+            // Prevent duplicate indexing — scoped to this user's upload
+            const { data: existing } = await supabaseAdmin
                 .from(tableName)
                 .select('id')
                 .eq('metadata->>pdfId', pdf_id)
+                .eq('metadata->>userId', userId)   // ← user-specific check
                 .limit(1);
 
             if (!existing || existing.length === 0) {
-                console.log(`📄 Indexing new PDF: ${pdfFile.originalname}`);
+                console.log(`📄 Indexing new PDF for user ${userId}: ${pdfFile.originalname}`);
                 await vectorStore.addDocuments(chunks);
             } else {
-                console.log(`✅ PDF already indexed: ${pdfFile.originalname}`);
+                console.log(`✅ PDF already indexed for user ${userId}: ${pdfFile.originalname}`);
             }
 
             // ====================== SEARCH ======================
+            // Filter results by both pdfId and userId to keep context user-specific
             const results = await vectorStore.similaritySearchWithScore(
                 query,
                 Math.min(20, chunks.length),
-                { pdfId: pdf_id }
+                { pdfId: pdf_id, userId: userId }   // ← user-specific filter
             );
 
             const top3 = results

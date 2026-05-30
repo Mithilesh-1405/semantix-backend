@@ -14,13 +14,17 @@ exports.searchPDF = async (req, res, next) => {
     try {
         const pdfFile = req.file;
         const { search_query } = req.body;
+        const userId = req.user.id;
+
         logger.info('Processing pdf search request:', {
+            userId,
             originalFilename: pdfFile.originalname,
             fileSize: pdfFile.size,
             searchQueryLength: search_query.length
         });
-        const result = await pdfService.searchPDFRAG(pdfFile, search_query)
-        if(!result){
+
+        const result = await pdfService.searchPDFRAG(pdfFile, search_query, userId);
+        if (!result) {
             throw new AppError('Error searching PDF', 500);
         }
         return res.status(200).json({
@@ -47,7 +51,8 @@ exports.searchPDF = async (req, res, next) => {
 exports.getSearchHistory = async (req, res) => {
     try {
         const { page = 1, limit = 10, search = null } = req.query;
-        const historyData = await searchHistoryService.getHistory(page, limit);
+        const userId = req.user.id;
+        const historyData = await searchHistoryService.getHistory(page, limit, userId);
         if (historyData.length === 0) {
             return res.status(404).json({
                 success: false,

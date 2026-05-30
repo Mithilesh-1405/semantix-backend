@@ -55,7 +55,8 @@ class PdfService {
 
         return Number(similarity.toFixed(4));
     }
-    async polishResume(pdfFile, jobDescription, type) {
+
+    async polishResume(pdfFile, jobDescription, type, userId) {
         try {
             if (!pdfFile) {
                 throw new AppError('No file uploaded', 400);
@@ -69,13 +70,14 @@ class PdfService {
             if (similarity === null || similarity === undefined) {
                 throw new AppError('Error getting similarity', 500);
             }
-            const insertPDFData = await pdfDetailsService.insertPDFDetails(pdfFile, type);
-            if (!insertPDFData[0].id) {
+
+            const insertPDFData = await pdfDetailsService.insertPDFDetails(pdfFile, userId, type);
+            if (!insertPDFData || !insertPDFData[0] || !insertPDFData[0].id) {
                 throw new AppError('Error inserting PDF details', 500);
             }
 
-            const insertHistoryData = await polishHistoryService.insertHistory(insertPDFData[0].id, jobDescription, pdfFile, similarity);
-            if (!insertHistoryData[0].id) {
+            const insertHistoryData = await polishHistoryService.insertHistory(insertPDFData[0].id, jobDescription, pdfFile, similarity, userId);
+            if (!insertHistoryData || !insertHistoryData[0] || !insertHistoryData[0].id) {
                 throw new AppError('Error inserting history details', 500);
             }
             return {
@@ -88,7 +90,8 @@ class PdfService {
             throw new Error(err.message || 'Server error');
         }
     }
-    async searchPDFRAG(pdfFile, search_query, type) {
+
+    async searchPDFRAG(pdfFile, search_query, userId, type) {
         try {
             if (!pdfFile) {
                 throw new AppError('No file uploaded', 400);
@@ -97,22 +100,22 @@ class PdfService {
                 throw new AppError('Search query is required', 400);
             }
 
-            const insertPDFData = await pdfDetailsService.insertPDFDetails(pdfFile, type);
-            if (!insertPDFData[0].id) {
+            const insertPDFData = await pdfDetailsService.insertPDFDetails(pdfFile, userId, type);
+            if (!insertPDFData || !insertPDFData[0] || !insertPDFData[0].id) {
                 throw new AppError('Error inserting PDF details', 500);
             }
 
             // Attach the DB ID to the file object for the RAG service usage
             const pdf_id = insertPDFData[0].id;
 
-            // will return pages with relevant searches
-            const semanticSearch = await ragService.semanticSearch(pdfFile, search_query, pdf_id)
+            // will return pages with relevant searches — scoped to this user
+            const semanticSearch = await ragService.semanticSearch(pdfFile, search_query, pdf_id, userId)
             if(!semanticSearch){
                 throw new AppError('Error searching PDF', 500);
             }
 
-            const insertHistoryData = await searchHistoryService.insertSearchHistory(insertPDFData[0].id, insertPDFData[0].pdf_name, search_query);
-            if (!insertHistoryData[0].id) {
+            const insertHistoryData = await searchHistoryService.insertSearchHistory(insertPDFData[0].id, insertPDFData[0].pdf_name, search_query, userId);
+            if (!insertHistoryData || !insertHistoryData[0] || !insertHistoryData[0].id) {
                 throw new AppError('Error inserting history details', 500);
             }
 
