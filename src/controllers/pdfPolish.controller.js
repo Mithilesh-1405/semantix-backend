@@ -17,6 +17,7 @@ exports.polishResume = async (req, res) => {
     try {
         const { job_description } = req.body;
         const pdfFile = req.file;
+        const userId = req.user.id;
 
         if (!pdfFile) {
             return res.status(400).json({ success: false, message: 'PDF file is required' });
@@ -27,12 +28,13 @@ exports.polishResume = async (req, res) => {
         }
 
         logger.info('Processing resume polish request:', {
+            userId,
             originalFilename: pdfFile.originalname,
             fileSize: pdfFile.size,
             jobDescriptionLength: job_description.length
         });
 
-        const result = await pdfService.polishResume(pdfFile, job_description, "resume");
+        const result = await pdfService.polishResume(pdfFile, job_description, "resume", userId);
 
         return res.status(200).json({
             success: true,
@@ -59,7 +61,8 @@ exports.polishResume = async (req, res) => {
 exports.getPolishHistory = async (req, res) => {
     try {
         const { page = 1, limit = 10, search = null } = req.query;
-        const historyData = await polishHistoryService.getHistory(page, limit);
+        const userId = req.user.id;
+        const historyData = await polishHistoryService.getHistory(page, limit, userId);
         if (historyData.length === 0) {
             return res.status(404).json({
                 success: false,

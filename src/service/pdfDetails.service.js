@@ -1,16 +1,16 @@
-
-const supabase = require("../config/supabase_client");
+const { supabaseAdmin } = require("../config/supabase_client");
 const logger = require("../utils/logger");
 
 class PDFDetailsService {
-    async insertPDFDetails(pdfFile, pdf_type = "other") {
+    async insertPDFDetails(pdfFile, userId, pdf_type = "other") {
         try {
-            // First, check if this exact file was already uploaded
-            const { data: existing, error: findError } = await supabase.schema('pdf')
+            // First, check if this exact file was already uploaded by this user
+            const { data: existing, error: findError } = await supabaseAdmin.schema('pdf')
                 .from('pdf_upload_details')
                 .select()
                 .eq('pdf_name', pdfFile.originalname)
                 .eq('pdf_size', pdfFile.size)
+                .eq('user_id', userId)
                 .limit(1);
 
             if (existing && existing.length > 0) {
@@ -19,11 +19,12 @@ class PDFDetailsService {
             }
 
             // If not found, insert new record
-            const { data, error } = await supabase.schema('pdf').from('pdf_upload_details')
+            const { data, error } = await supabaseAdmin.schema('pdf').from('pdf_upload_details')
                 .insert({
                     pdf_name: pdfFile.originalname,
                     pdf_size: pdfFile.size,
                     pdf_type: pdf_type,
+                    user_id: userId,
                     created_at: new Date()
                 })
                 .select()
