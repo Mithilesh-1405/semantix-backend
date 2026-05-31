@@ -19,9 +19,13 @@ const allowedOrigins = [
 ];
 
 if (process.env.CORS_ORIGIN) {
-    const origins = process.env.CORS_ORIGIN.split(',').map(o => o.replace(/['"]/g, '').trim());
+    const origins = process.env.CORS_ORIGIN
+        .split(',')
+        .map(o => o.trim().replace(/^['"]|['"]$/g, ''))
+        .filter(Boolean);
+
     origins.forEach(o => {
-        if (o && !allowedOrigins.includes(o)) {
+        if (!allowedOrigins.includes(o)) {
             allowedOrigins.push(o);
         }
     });
