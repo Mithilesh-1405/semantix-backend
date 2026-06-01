@@ -16,8 +16,8 @@ class RAGPipelineService {
         try {
             // ====================== FREE EMBEDDING MODEL ======================
             const embeddings = new HuggingFaceInferenceEmbeddings({
-                model: "BAAI/bge-m3",                    // Best free model right now
-                apiKey: process.env.HUGGINGFACE_API_KEY, // Get free from huggingface.co
+                model: "BAAI/bge-m3",
+                apiKey: process.env.HUGGINGFACE_API_KEY,
             });
 
             const pages = [];
@@ -33,14 +33,12 @@ class RAGPipelineService {
 
             const tableName = 'document_chunks';
 
-            // Use admin client so vector store operations bypass RLS
             const vectorStore = new SupabaseVectorStore(embeddings, {
                 client: supabaseAdmin,
                 tableName,
                 queryName: 'match_documents',
             });
 
-            // Convert PDF to LangChain Documents — include userId in metadata
             const documents = pages
                 .filter(p => p.text.length > 20)
                 .map(p => new Document({
@@ -49,7 +47,7 @@ class RAGPipelineService {
                         page: p.pageNum,
                         source: pdfFile.originalname,
                         pdfId: pdf_id,
-                        userId: userId        // ← user-specific tag
+                        userId: userId
                     }
                 }));
 
@@ -58,20 +56,17 @@ class RAGPipelineService {
                 return { success: false, message: "No text found in PDF" };
             }
 
-            // Better chunking for semantic search
             const splitter = new RecursiveCharacterTextSplitter({
-                chunkSize: 300,       // was 600 — resumes are short-form
-                chunkOverlap: 80,     // was 100
+                chunkSize: 300,
+                chunkOverlap: 80,
             });
 
             const chunks = await splitter.splitDocuments(documents);
-
-            // Prevent duplicate indexing — scoped to this user's upload
             const { data: existing } = await supabaseAdmin
                 .from(tableName)
                 .select('id')
                 .eq('metadata->>pdfId', pdf_id)
-                .eq('metadata->>userId', userId)   // ← user-specific check
+                .eq('metadata->>userId', userId)
                 .limit(1);
 
             if (!existing || existing.length === 0) {
@@ -82,11 +77,10 @@ class RAGPipelineService {
             }
 
             // ====================== SEARCH ======================
-            // Filter results by both pdfId and userId to keep context user-specific
             const results = await vectorStore.similaritySearchWithScore(
                 query,
                 Math.min(20, chunks.length),
-                { pdfId: pdf_id, userId: userId }   // ← user-specific filter
+                { pdfId: pdf_id, userId: userId }
             );
 
             const top3 = results
@@ -99,7 +93,7 @@ class RAGPipelineService {
                 }))
                 .filter(r => r.similarity >= 0.40)
                 .sort((a, b) => b.similarity - a.similarity)
-                .slice(0, 3);  // ✅ top 3 only
+                .slice(0, 3);
 
             const responseData = {
                 success: true,
@@ -114,7 +108,7 @@ class RAGPipelineService {
                     page: item.page,
                     similarity: item.similarity,
                     similarityPercent: item.similarityPercent,
-                    text: item.text,        // ✅ directly from mapped item, no index gymnastics
+                    text: item.text,
                     metadata: item.metadata
                 }))
             };
