@@ -5,14 +5,21 @@ dotenv.config();
 
 const PORT = process.env.PORT || 3001;
 
-const server = app.listen(PORT, () => {
-    logger.info(`Server running on port ${PORT}`);
-});
-
-// Graceful shutdown
-process.on('SIGTERM', () => {
-    logger.info('SIGTERM received, shutting down gracefully');
-    server.close(() => {
-        logger.info('Process terminated');
+let server;
+if (!process.env.VERCEL) {
+    server = app.listen(PORT, () => {
+        logger.info(`Server running on port ${PORT}`);
     });
-});
+
+    // Graceful shutdown
+    process.on('SIGTERM', () => {
+        logger.info('SIGTERM received, shutting down gracefully');
+        if (server) {
+            server.close(() => {
+                logger.info('Process terminated');
+            });
+        }
+    });
+}
+
+module.exports = app;
