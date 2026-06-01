@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const morgan = require('morgan');
-const logger = require('./utils/logger').default;
+const logger = require('./utils/logger');
 const routes = require('./routes/index.js');
 
 const path = require('path');
