@@ -1,4 +1,4 @@
-const { PDFExtract } = require("pdf.js-extract");
+const pdfParse = require('pdf-parse');
 const { Document } = require("@langchain/core/documents");
 const { RecursiveCharacterTextSplitter } = require("@langchain/textsplitters");
 const { SupabaseVectorStore } = require('@langchain/community/vectorstores/supabase');
@@ -20,13 +20,16 @@ class RAGPipelineService {
                 apiKey: process.env.HUGGINGFACE_API_KEY, // Get free from huggingface.co
             });
 
-            const pdfExtract = new PDFExtract();
-            const data = await new Promise((resolve, reject) => {
-                pdfExtract.extractBuffer(pdfFile.buffer, {}, (err, data) => {
-                    if (err) return reject(err);
-                    resolve(data);
+            const pages = [];
+            const pagerender = (pageData) => {
+                return pageData.getTextContent().then(textContent => {
+                    const text = textContent.items.map(item => item.str).join(" ").trim();
+                    pages.push({ text, pageNum: pageData.pageIndex + 1 });
+                    return text;
                 });
-            });
+            };
+
+            await pdfParse(pdfFile.buffer, { pagerender });
 
             const tableName = 'document_chunks';
 
@@ -38,11 +41,7 @@ class RAGPipelineService {
             });
 
             // Convert PDF to LangChain Documents — include userId in metadata
-            const documents = data.pages
-                .map(page => ({
-                    text: page.content.map(item => item.str).join(" ").trim(),
-                    pageNum: page.pageInfo.num,
-                }))
+            const documents = pages
                 .filter(p => p.text.length > 20)
                 .map(p => new Document({
                     pageContent: p.text,

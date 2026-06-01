@@ -14,7 +14,7 @@ const ragService = new RAGService();
 // ===========================EXTERNAL PACKAGES=========================
 const { GoogleGenAI } = require("@google/genai");
 const cosineSimilarity = require("compute-cosine-similarity");
-const { PDFExtract } = require("pdf.js-extract");
+const pdfParse = require('pdf-parse');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -22,16 +22,8 @@ const API_KEY = process.env.GOOGLE_API_KEY;
 
 class PdfService {
     async extractPdfText(buffer) {
-        const pdfExtract = new PDFExtract();
-        return new Promise((resolve, reject) => {
-            pdfExtract.extractBuffer(buffer, {}, (err, data) => {
-                if (err) return reject(err);
-                const text = data.pages
-                    .map(page => page.content.map(item => item.str).join(" "))
-                    .join("\n\n");
-                resolve(text);
-            });
-        });
+        const data = await pdfParse(buffer);
+        return data.text;
     }
 
     async getSimilarity(resumeText, jobDescription) {
